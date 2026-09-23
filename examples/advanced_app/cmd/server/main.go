@@ -15,7 +15,7 @@ import (
 
 	ginlib "github.com/gin-gonic/gin"
 	guardgin "github.com/rennf93/gin-guard"
-	guardcore "github.com/rennf93/guard-core-go/guardcore"
+	guardcore "github.com/rennf93/guard-core-go/v4/guardcore"
 
 	"github.com/rennf93/gin-guard/examples/advanced_app/internal/config"
 	"github.com/rennf93/gin-guard/examples/advanced_app/internal/routes"

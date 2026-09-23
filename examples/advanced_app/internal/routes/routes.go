@@ -10,7 +10,7 @@ import (
 	"net/http"
 
 	ginlib "github.com/gin-gonic/gin"
-	guardcore "github.com/rennf93/guard-core-go/guardcore"
+	guardcore "github.com/rennf93/guard-core-go/v4/guardcore"
 )
 
 // App carries the engine into handlers that need operational access (the

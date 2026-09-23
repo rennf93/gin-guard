@@ -7,7 +7,7 @@ Gin middleware adapter for [guard-core-go](https://github.com/rennf93/guard-core
 The adapter has no release tag yet; pin a commit (or track `main`) until the first tag is published:
 
 ```
-go get github.com/rennf93/gin-guard@main github.com/rennf93/guard-core-go@v0.1.0
+go get github.com/rennf93/gin-guard@main github.com/rennf93/guard-core-go/v4@v4.0.4
 ```
 
 The package name is `gin`, which collides with `github.com/gin-gonic/gin` (also package `gin`), so import the adapter with an explicit alias such as `guardgin`.
@@ -21,7 +21,7 @@ import (
 	"log"
 
 	ginlib "github.com/gin-gonic/gin"
-	guardcore "github.com/rennf93/guard-core-go/guardcore"
+	guardcore "github.com/rennf93/guard-core-go/v4/guardcore"
 	guardgin "github.com/rennf93/gin-guard"
 )
 
@@ -56,7 +56,7 @@ Engine malfunctions fail closed with a 500. Detection covers at most the first `
 
 ## Development
 
-The middleware consumes the core as a normal module dependency (`github.com/rennf93/guard-core-go v0.1.0`); no `replace` directive is used or needed. For cross-repo work on the core itself, add a temporary local `replace` line in your own checkout and drop it before committing.
+The middleware consumes the core as a normal module dependency (`github.com/rennf93/guard-core-go/v4 v4.0.4`); no `replace` directive is used or needed. For cross-repo work on the core itself, add a temporary local `replace` line in your own checkout and drop it before committing.
 
 Integration tests run against real Redis:
 

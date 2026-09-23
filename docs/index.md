@@ -14,7 +14,7 @@ arrives.
 ## Installation
 
 ```bash
-go get github.com/rennf93/gin-guard@main github.com/rennf93/guard-core-go@v0.1.0
+go get github.com/rennf93/gin-guard@main github.com/rennf93/guard-core-go/v4@v4.0.4
 ```
 
 Requires Go 1.25 or later.
@@ -32,7 +32,7 @@ import (
 	"log"
 
 	ginlib "github.com/gin-gonic/gin"
-	guardcore "github.com/rennf93/guard-core-go/guardcore"
+	guardcore "github.com/rennf93/guard-core-go/v4/guardcore"
 	guardgin "github.com/rennf93/gin-guard"
 )
 

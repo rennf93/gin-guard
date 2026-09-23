@@ -22,7 +22,7 @@ Behavior contract: the engine sees at most `MaxBodyBytes` of the body prefix; pa
 ## Installation
 
 ```sh
-go get github.com/rennf93/gin-guard@main github.com/rennf93/guard-core-go@v0.1.0
+go get github.com/rennf93/gin-guard@main github.com/rennf93/guard-core-go/v4@v4.0.4
 ```
 
 The package name is `gin`, which collides with `github.com/gin-gonic/gin`, so import the adapter with an alias:
@@ -30,7 +30,7 @@ The package name is `gin`, which collides with `github.com/gin-gonic/gin`, so im
 ```go
 import (
     ginlib "github.com/gin-gonic/gin"
-    guardcore "github.com/rennf93/guard-core-go/guardcore"
+    guardcore "github.com/rennf93/guard-core-go/v4/guardcore"
     guardgin "github.com/rennf93/gin-guard"
 )
 ```
@@ -110,5 +110,5 @@ func WithRouteID(ctx context.Context, routeID string) context.Context
 
 ## Related Projects
 
-- [guard-core-go](https://github.com/rennf93/guard-core-go): the engine this adapter wraps. All detection, rate limiting, bans, configuration, and Redis integration live there; import it as `guardcore "github.com/rennf93/guard-core-go/guardcore"`.
+- [guard-core-go](https://github.com/rennf93/guard-core-go): the engine this adapter wraps. All detection, rate limiting, bans, configuration, and Redis integration live there; import it as `guardcore "github.com/rennf93/guard-core-go/v4/guardcore"`.
 - [nethttp-guard](https://github.com/rennf93/nethttp-guard): the sibling net/http adapter with the same surface and behavior contract.
