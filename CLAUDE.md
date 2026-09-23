@@ -15,9 +15,9 @@ gin-guard is a Gin middleware adapter for [guard-core-go](https://github.com/ren
 This repo is the ADAPTER layer of the guard-core ecosystem:
 
 - `guard-core-go` is the engine. All detection (suspicious activity, IP bans, rate limits, HTTPS enforcement), verdict construction, and error response factories live there.
-- This repo wires Go Gin types to that engine and nothing more. It consumes `github.com/rennf93/guard-core-go v0.1.0` as a normal module dependency (see `go.mod`); no `replace` directive is used or needed. For cross-repo work on the core, add a temporary local `replace` in your own checkout and drop it before committing.
+- This repo wires Go Gin types to that engine and nothing more. It consumes `github.com/rennf93/guard-core-go/v4 v4.0.4` as a normal module dependency (see `go.mod`); no `replace` directive is used or needed. For cross-repo work on the core, add a temporary local `replace` in your own checkout and drop it before committing.
 - Because the middleware is a `gin.HandlerFunc`, it composes with `router.Use` and runs anywhere in a Gin handler chain.
-- Direct dependencies: `github.com/gin-gonic/gin v1.12.0` (the framework this adapter exists for; a framework import is allowed here, unlike in the core) and `github.com/rennf93/guard-core-go v0.1.0`. Notable indirect floors: `quic-go v0.59.1` (explicitly bumped for GO-2026-5676; gin v1.12.0 pulled the vulnerable v0.59.0), plus the core's transitives (`redis/go-redis/v9 v9.7.3`, `dlclark/regexp2 v1.12.0`, `golang.org/x/text v0.39.0`).
+- Direct dependencies: `github.com/gin-gonic/gin v1.12.0` (the framework this adapter exists for; a framework import is allowed here, unlike in the core) and `github.com/rennf93/guard-core-go/v4 v4.0.4`. Notable indirect floors: `quic-go v0.59.1` (explicitly bumped for GO-2026-5676; gin v1.12.0 pulled the vulnerable v0.59.0), plus the core's transitives (`redis/go-redis/v9 v9.22.0`, `dlclark/regexp2 v1.12.0`, `go.uber.org/atomic`, `golang.org/x/text v0.41.0`).
 
 ## Boundary Rules
 
@@ -49,7 +49,7 @@ Minimal usage (from README.md):
 ```go
 import (
     ginlib "github.com/gin-gonic/gin"
-    guardcore "github.com/rennf93/guard-core-go/guardcore"
+    guardcore "github.com/rennf93/guard-core-go/v4/guardcore"
     guardgin "github.com/rennf93/gin-guard"
 )
 
@@ -93,7 +93,7 @@ CI runs the test job on a Go matrix of `1.25.x` and `1.26.x` (fail-fast disabled
 ├── request.go           # requestShim (implements guardcore.Request), WithRouteID, DefaultMaxBodyBytes, replayBody
 ├── middleware_test.go   # unit tests, real gin engine in TestMode, Redis disabled
 ├── integration_test.go  # //go:build integration, Redis-backed, skips when REDIS_HOST is unset
-├── go.mod / go.sum      # module github.com/rennf93/gin-guard, requires gin v1.12.0 and guard-core-go v0.1.0
+├── go.mod / go.sum      # module github.com/rennf93/gin-guard, requires gin v1.12.0 and guard-core-go/v4 v4.0.4
 ├── README.md            # usage, options, integration test instructions
 ├── LICENSE              # MIT
 └── .github/
@@ -107,7 +107,7 @@ CI runs the test job on a Go matrix of `1.25.x` and `1.26.x` (fail-fast disabled
 ## Technology Stack
 
 - Go, directive `go 1.25.0`; CI matrix tests 1.25.x and 1.26.x.
-- `github.com/rennf93/guard-core-go v0.1.0` (direct require in `go.mod`), providing `guardcore.Engine`, `guardcore.Request`, `guardcore.Response`, `guardcore.SecurityConfig`.
+- `github.com/rennf93/guard-core-go/v4 v4.0.4` (direct require in `go.mod`), providing `guardcore.Engine`, `guardcore.Request`, `guardcore.Response`, `guardcore.SecurityConfig`.
 - `github.com/gin-gonic/gin v1.12.0` (direct require in `go.mod`), providing `gin.HandlerFunc` and `gin.Context` for the bridging surface.
 - Redis 7 for integration tests (CI service container `redis:7-alpine`); runtime Redis usage is a guard-core-go concern, not this adapter's.
 - GitHub Actions: CI on push and pull_request, Release Gate on `v*` tag push, weekly Scheduled Lint, CodeQL (go), Dependabot for gomod and actions, all with minimal permissions and pinned action SHAs.
@@ -145,5 +145,5 @@ CI runs the test job on a Go matrix of `1.25.x` and `1.26.x` (fail-fast disabled
 
 ## Related Projects
 
-- [guard-core-go](https://github.com/rennf93/guard-core-go): the engine this adapter wraps. All security logic, configuration, verdicts, and Redis integration live there. Import it as `guardcore "github.com/rennf93/guard-core-go/guardcore"`.
+- [guard-core-go](https://github.com/rennf93/guard-core-go): the engine this adapter wraps. All security logic, configuration, verdicts, and Redis integration live there. Import it as `guardcore "github.com/rennf93/guard-core-go/v4/guardcore"`.
 - [nethttp-guard](https://github.com/rennf93/nethttp-guard): the sibling net/http adapter with the same surface and behavior contract; keep the two adapters behaviorally aligned.

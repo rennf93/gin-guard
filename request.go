@@ -10,7 +10,7 @@ import (
 	"sync"
 
 	ginlib "github.com/gin-gonic/gin"
-	"github.com/rennf93/guard-core-go/guardcore"
+	"github.com/rennf93/guard-core-go/v4/guardcore"
 )
 
 const DefaultMaxBodyBytes int64 = 262144
