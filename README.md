@@ -2,12 +2,14 @@
 
 Gin middleware adapter for [guard-core-go](https://github.com/rennf93/guard-core-go). Translates `*gin.Context` into the guardcore request surface, runs the engine, and translates verdicts to exact Gin responses (status, headers, body, then abort). Works with any `gin.Engine` or `gin.RouterGroup` chain via `router.Use`.
 
+Docs: https://rennf93.github.io/gin-guard/
+
 ## Install
 
 The adapter has no release tag yet; pin a commit (or track `main`) until the first tag is published:
 
 ```
-go get github.com/rennf93/gin-guard@main github.com/rennf93/guard-core-go/v4@v4.0.4
+go get github.com/rennf93/gin-guard@v1.0.0 github.com/rennf93/guard-core-go/v4@v4.0.4
 ```
 
 The package name is `gin`, which collides with `github.com/gin-gonic/gin` (also package `gin`), so import the adapter with an explicit alias such as `guardgin`.
